@@ -1,0 +1,17 @@
+# Lean
+lean/.lake/
+lean/build/
+*.olean
+*.ilean
+*.trace
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg

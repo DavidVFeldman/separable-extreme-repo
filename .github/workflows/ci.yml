@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lean:
+    name: Lean build, sorry check, axiom audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No sorry or admit
+        run: ./scripts/check_sorry.sh
+
+      - name: Build the development
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: "lean"
+          build: true
+          use-mathlib-cache: true
+
+      - name: Axiom audit
+        run: ./scripts/audit_axioms.sh
+
+  paper:
+    name: LaTeX build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile the paper
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: separable-extreme.tex
+          working_directory: paper
+      - uses: actions/upload-artifact@v4
+        with:
+          name: separable-extreme-pdf
+          path: paper/separable-extreme.pdf

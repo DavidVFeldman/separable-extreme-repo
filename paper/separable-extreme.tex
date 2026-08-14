@@ -1,0 +1,884 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bM}{\bar{\mathcal{M}}}
+\newcommand{\ex}{\operatorname{ex}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\GI}{\cong_{\mathrm{gi}}}
+\newcommand{\isoi}{\cong_i}
+\newcommand{\isox}{\cong_i^{\mathrm{ext}}}
+\newcommand{\leB}{\leq_B}
+
+\title{\textbf{Every Separable Metric Space Extends to an Extreme One}}
+
+\author{David Victor Feldman\\
+\small Department of Mathematics and Statistics\\
+\small University of New Hampshire
+\and
+Eric R.\ Kehoe\\
+\small Zoetis, Inc.\\
+\small Fort Collins, Colorado}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The bounded-by-$1$ pseudometrics on a set $X$ form a compact convex set $\bM(X)$. For
+finite $X$ this is a rational polytope, so its extreme points have rational distances and
+satisfy the rigidity constraints that come with lying on many facets. We show that no such
+restriction survives passage to infinite $X$: every separable bounded-by-$1$ pseudometric
+space $(X,d)$ is the restriction of an extreme point of $\bM(\tilde X)$ for some
+$\tilde X \supseteq X$ with $\tilde X \setminus X$ countable. The local structure of an
+extreme point may therefore be arbitrary, irrational distances included. The proof glues
+finite extreme metrics of prescribed rational distances, supplied by the bowtie
+construction of the companion paper, onto a countable dense subset, after subdividing each
+irrational distance into a summable sequence of rational ones.
+
+The extension admits a canonical form, functorial in isometric embeddings of countable
+spaces, and the original space is recoverable from it as the derived set of its completion.
+It follows that graph isomorphism Borel-reduces to isometry of extreme Polish metric
+spaces: extreme spaces admit no classification by real-number invariants, nor by countable
+structures. A structural obstruction confines this method below the universal orbit
+equivalence relation, and the resulting gap is posed as a question.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $X$ be a set and let $\bM(X)$ denote the set of bounded-by-$1$ pseudometrics on $X$:
+symmetric functions $d\colon X\times X\to[0,1]$ vanishing on the diagonal and satisfying
+the triangle inequality. Under pointwise operations $\bM(X)$ is convex, and in the product
+topology it is compact, being a closed subset of $[0,1]^{X\times X}$. Write $\ex(\bM(X))$
+for its extreme points.
+
+For finite $X$ with $|X|=n$, $\bM(X)$ is a polytope in $\R^{\binom{n}{2}}$ cut out by the
+triangle inequalities and the bounds $0\le d\le 1$, all of which have integer coefficients.
+Its extreme points are therefore rational, and each is pinned by $\binom{n}{2}$
+independent tight constraints---a strong rigidity condition. Which finite metrics are
+extreme is a delicate question with a substantial literature
+\cite{Avis80,Deza97,Koolen00}, and even the classification of the extreme rays of the
+associated cone is complete only for at most six points.
+
+The situation for infinite $X$ is the opposite, and that is the first content of this
+paper.
+
+\begin{theorem}\label{thm:main}
+Let $(X,d)$ be a separable bounded-by-$1$ pseudometric space. Then there is a set
+$\tilde X\supseteq X$ with $\tilde X\setminus X$ countable, and an extreme point
+$\tilde d\in\ex(\bM(\tilde X))$, with $\tilde d|_{X\times X}=d$. The space
+$(\tilde X,\tilde d)$ is again separable.
+\end{theorem}
+
+So extremality imposes no constraint whatever on the isometry type of a separable
+bounded-by-$1$ pseudometric space, up to the addition of countably many points: the class
+of extreme separable bounded-by-$1$ pseudometric spaces is universal for the class of all
+of them. In particular:
+
+\begin{corollary}\label{cor:irrational}
+For countable $X$, an extreme point of $\bM(X)$ may take irrational values, and indeed may
+realize any prescribed countable subset of $[0,1]$ among its distances.
+\end{corollary}
+
+The mechanism is a trade between two kinds of rigidity. A perturbation of a pseudometric
+must vanish wherever a distance is $0$ or $1$, and must respect every degenerate triangle;
+in a finite space these constraints compete with the $\binom{n}{2}$ degrees of freedom and
+are hard to satisfy in bulk. Given countably many new points one may instead \emph{install}
+the constraints: every distance one wishes to freeze is embedded in a finite extreme
+metric that realizes it, and the finitely many new distances that the embedding creates are
+either equal to $1$, hence frozen outright, or forced by a degenerate triangle through the
+gluing locus, hence not free either. Irrational distances, which no finite extreme metric
+can realize, are first broken into a summable sequence of rational ones.
+
+The second content concerns classification, and begins from an observation of Dmitri
+Nikshych: Theorem~\ref{thm:main} reads as a \emph{nonclassification} result, the world of
+extreme separable metric spaces being at least as rich as the world of all of them. We make
+this precise. The extension admits a canonical form $\E$, functorial in isometric
+embeddings of countable metric spaces (Theorem~\ref{thm:functor}), which in particular
+resolves the dependence of the construction on its many choices; and $\E$ is reversible:
+the input is recoverable from the output as the derived set of its completion
+(Theorem~\ref{thm:recovery}). Composing the two yields a Borel reduction of graph
+isomorphism to isometry of extreme Polish metric spaces (Theorem~\ref{thm:gi}), so extreme
+Polish metric spaces cannot be classified by real-number invariants, nor by countable
+structures (Corollary~\ref{cor:nonclass}). Against the Gao--Kechris theorem
+\cite{GaoKechris03}, which places isometry of all Polish metric spaces at the maximal
+complexity among orbit equivalence relations of Polish group actions, a gap remains; we
+prove that no construction canonical merely at the level of a marked countable dense set
+can close it (Proposition~\ref{prop:obstruction}), and pose the sharpened question
+(Question~\ref{q:universal}).
+
+Section~\ref{sec:prelim} records what a perturbation of a pseudometric can do; the bound
+$|\eps|\le\min\{d,1-d\}$ of Lemma~\ref{lem:bound} is used throughout and is what makes
+extremality a property detectable on a dense subset (Lemma~\ref{lem:dense}).
+Section~\ref{sec:glue} proves the gluing lemma, Section~\ref{sec:subdivide} the subdivision
+lemma, and Section~\ref{sec:proof} assembles them. Section~\ref{sec:canonical} constructs
+the canonical extension and Section~\ref{sec:nonclass} the recovery and the reduction.
+Section~\ref{sec:questions} collects the remaining questions.
+
+We use one input from the finite theory, proved in Section~\ref{sec:proof} as
+Proposition~\ref{prop:realize}: every rational number in $(0,1]$ occurs as a distance in
+some extreme point of $\bM(F)$ with $F$ finite. It rests on the generalized bowtie metrics
+of the companion paper \cite{FK-cone}, and is the only place the finite classification
+enters.
+
+The results of Sections~\ref{sec:prelim}--\ref{sec:proof} have been formalized in Lean~4
+against Mathlib; formalization of Sections~\ref{sec:canonical}--\ref{sec:nonclass} is in
+progress. Section~\ref{sec:verify} records the correspondence, the scope, and the deposit.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Perturbations}
+\label{sec:prelim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Throughout, a \emph{metric} means a bounded-by-$1$ pseudometric, and $(X,d)$ ranges over
+such spaces of arbitrary cardinality. We write $d(x,y)$ and speak of the \emph{distance}
+of the pair $\{x,y\}$.
+
+\begin{definition}\label{def:perturbation}
+A \emph{perturbation} of $d\in\bM(X)$ is a symmetric function $\eps\colon X\times X\to\R$
+vanishing on the diagonal such that both $d+\eps$ and $d-\eps$ lie in $\bM(X)$.
+\end{definition}
+
+Perturbations detect extremality, by the same argument as in a finite-dimensional polytope.
+
+\begin{proposition}\label{prop:extreme-iff}
+$d\in\ex(\bM(X))$ if and only if the only perturbation of $d$ is $\eps=0$.
+\end{proposition}
+
+\begin{proof}
+If $\eps\neq0$ is a perturbation then $d=\tfrac12(d+\eps)+\tfrac12(d-\eps)$ exhibits $d$ as
+the midpoint of a segment with distinct endpoints in $\bM(X)$, so $d$ is not extreme.
+Conversely if $d=\tfrac12(a+b)$ with $a\neq b$ in $\bM(X)$, then $\eps=\tfrac12(a-b)$ is a
+nonzero perturbation.
+\end{proof}
+
+The next two lemmas are elementary and do all of the analytic work in this paper.
+
+\begin{lemma}\label{lem:bound}
+Let $\eps$ be a perturbation of $d\in\bM(X)$. Then
+\[
+|\eps(x,y)|\;\le\;\min\bigl\{\,d(x,y),\;1-d(x,y)\,\bigr\}
+\qquad\text{for all }x,y\in X .
+\]
+In particular $\eps(x,y)=0$ whenever $d(x,y)\in\{0,1\}$.
+\end{lemma}
+
+\begin{proof}
+Both $d+\eps$ and $d-\eps$ take values in $[0,1]$. Nonnegativity of $d-\eps$ and of
+$d+\eps$ gives $|\eps|\le d$; the bounds $d\pm\eps\le1$ give $|\eps|\le 1-d$.
+\end{proof}
+
+\begin{lemma}\label{lem:tight}
+Let $\eps$ be a perturbation of $d\in\bM(X)$ and suppose $d(x,z)=d(x,y)+d(y,z)$. Then
+\[
+\eps(x,z)=\eps(x,y)+\eps(y,z).
+\]
+\end{lemma}
+
+\begin{proof}
+Applying the triangle inequality to $d+\eps$ at $[x,y,z]$ and subtracting the hypothesis
+gives $\eps(x,z)\le\eps(x,y)+\eps(y,z)$; the same computation for $d-\eps$ gives the
+reverse inequality.
+\end{proof}
+
+Lemma~\ref{lem:bound} has a consequence with no finite-dimensional analogue: a perturbation
+is continuous with respect to $d$, whether or not $d+\eps$ has any a priori relation to the
+topology of $d$. Extremality is therefore visible on any dense subset.
+
+\begin{lemma}\label{lem:dense}
+Let $d\in\bM(X)$, let $A\subseteq X$ be dense in the pseudometric topology of $d$, and let
+$\eps$ be a perturbation of $d$ with $\eps|_{A\times A}=0$. Then $\eps=0$.
+\end{lemma}
+
+\begin{proof}
+Write $\rho=d+\eps\in\bM(X)$. Fix $x,y\in X$ and choose sequences $a_k\to x$ and $b_k\to y$
+in $A$. By Lemma~\ref{lem:bound}, $\rho(a_k,x)\le d(a_k,x)+|\eps(a_k,x)|\le 2d(a_k,x)\to0$,
+and likewise $\rho(b_k,y)\to 0$. The triangle inequality for $\rho$ gives
+\[
+|\rho(a_k,b_k)-\rho(x,y)|\;\le\;\rho(a_k,x)+\rho(b_k,y)\;\longrightarrow\;0 ,
+\]
+so $\rho(a_k,b_k)\to\rho(x,y)$. But $\eps(a_k,b_k)=0$, so $\rho(a_k,b_k)=d(a_k,b_k)$, and
+$d(a_k,b_k)\to d(x,y)$ by the same estimate applied to $d$. Hence $\rho(x,y)=d(x,y)$, that
+is $\eps(x,y)=0$.
+\end{proof}
+
+\begin{corollary}\label{cor:restrict}
+If $Y\subseteq X$ and $\eps$ is a perturbation of $d\in\bM(X)$, then $\eps|_{Y\times Y}$ is
+a perturbation of $d|_{Y\times Y}$. Consequently, if $d|_{Y\times Y}$ is an extreme point of
+$\bM(Y)$ then every perturbation of $d$ vanishes on $Y\times Y$.
+\end{corollary}
+
+\begin{proof}
+The restriction of a bounded-by-$1$ pseudometric to a subset is one, and restriction is
+compatible with the operations $d\pm\eps$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gluing along a finite set}
+\label{sec:glue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Two metric spaces meeting in a finite set on which they agree may be amalgamated, and the
+amalgam can be chosen so that every new distance is either maximal or forced.
+
+\begin{lemma}\label{lem:glue}
+Let $(X,d)$ and $(Y,\rho)$ be bounded-by-$1$ pseudometric spaces with $F:=X\cap Y$ finite
+and non-empty, and with $d|_{F\times F}=\rho|_{F\times F}$. Define
+$\omega\colon (X\cup Y)^2\to[0,1]$ by $\omega|_{X\times X}=d$,
+$\omega|_{Y\times Y}=\rho$, and
+\begin{equation}\label{eq:glue}
+\omega(x,y)\;:=\;\min\Bigl\{\;\min_{z\in F}\bigl(d(x,z)+\rho(z,y)\bigr),\;1\;\Bigr\}
+\qquad (x\in X\setminus Y,\; y\in Y\setminus X).
+\end{equation}
+Then $\omega\in\bM(X\cup Y)$, and for every $x\in X\setminus Y$ and $y\in Y\setminus X$
+either $\omega(x,y)=1$, or there is $z\in F$ with
+\[
+\omega(x,y)=\omega(x,z)+\omega(z,y).
+\]
+\end{lemma}
+
+\begin{proof}
+Symmetry, vanishing on the diagonal and the range $[0,1]$ are clear from
+\eqref{eq:glue}; the final dichotomy holds because $F$ is finite, so the inner minimum is
+attained, and $\omega(x,z)=d(x,z)$, $\omega(z,y)=\rho(z,y)$ for $z\in F$.
+
+For the triangle inequality write $P=X\setminus Y$, $Q=Y\setminus X$. A triple with all
+three points in $X$, or all three in $Y$, is governed by $d$ or by $\rho$. Since $F\subseteq
+X$ and $F\subseteq Y$, the remaining triples have at least one point in $P$ and at least one
+in $Q$, leaving three cases up to the symmetry exchanging $(X,d,P)$ with $(Y,\rho,Q)$.
+
+\smallskip
+\noindent\emph{Case 1: $x\in P$, $y\in Q$, $z\in F$.}
+First, $\omega(x,y)\le d(x,z)+\rho(z,y)=\omega(x,z)+\omega(z,y)$ directly from
+\eqref{eq:glue}. Next, $\omega(x,z)\le\omega(x,y)+\omega(y,z)$: if $\omega(x,y)=1$ this
+reads $d(x,z)\le1+\rho(y,z)$, which holds as $d\le1$; otherwise
+$\omega(x,y)=d(x,w)+\rho(w,y)$ for some $w\in F$, and
+\[
+d(x,z)\;\le\;d(x,w)+d(w,z)\;=\;d(x,w)+\rho(w,z)\;\le\;d(x,w)+\rho(w,y)+\rho(y,z),
+\]
+using $d|_F=\rho|_F$. The inequality $\omega(z,y)\le\omega(x,y)+\omega(x,z)$ follows by
+exchanging the roles of $x$ and $y$.
+
+\smallskip
+\noindent\emph{Case 2: $x,x'\in P$, $y\in Q$.}
+For $\omega(x,y)\le\omega(x,x')+\omega(x',y)$: if $\omega(x',y)=1$ the right side is at
+least $1\ge\omega(x,y)$; otherwise $\omega(x',y)=d(x',w)+\rho(w,y)$ with $w\in F$, and
+\eqref{eq:glue} gives
+\[
+\omega(x,y)\;\le\;d(x,w)+\rho(w,y)\;\le\;d(x,x')+d(x',w)+\rho(w,y)\;=\;\omega(x,x')+\omega(x',y).
+\]
+The inequality $\omega(x',y)\le\omega(x,x')+\omega(x,y)$ is the same statement with $x$ and
+$x'$ exchanged. For $\omega(x,x')\le\omega(x,y)+\omega(x',y)$: if either term on the right equals $1$ the
+inequality holds since $d\le1$; otherwise $\omega(x,y)=d(x,w)+\rho(w,y)$ and
+$\omega(x',y)=d(x',w')+\rho(w',y)$ with $w,w'\in F$, whence
+\[
+d(x,x')\;\le\;d(x,w)+d(w,w')+d(w',x')\;\le\;d(x,w)+\rho(w,y)+\rho(y,w')+d(w',x'),
+\]
+again using $d|_F=\rho|_F$ and the triangle inequality for $\rho$ at $[w,y,w']$. The right
+side is $\omega(x,y)+\omega(x',y)$.
+
+\smallskip
+\noindent\emph{Case 3: $x\in P$, $y,y'\in Q$.}
+Symmetric to Case 2.
+\end{proof}
+
+\begin{remark}\label{rem:pushout}
+The truncation at $1$ in \eqref{eq:glue} is what keeps $\omega$ inside $\bM$; without it
+one obtains the usual amalgamated metric, the pushout of $(X,d)\leftarrow(F,d|_F)\to
+(Y,\rho)$ in the category of pseudometric spaces and $1$-Lipschitz maps. The dichotomy in
+Lemma~\ref{lem:glue} says that each new distance sits at the ceiling or on a geodesic
+through $F$, and it is this dichotomy, rather than the amalgamation itself, that the proof
+of Theorem~\ref{thm:main} consumes.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subdividing a distance}
+\label{sec:subdivide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+No finite extreme metric has an irrational distance, so an irrational distance cannot be
+frozen by the method of Section~\ref{sec:proof} directly. It can be written as a sum of
+rational distances along a countable geodesic, after which freezing the summands freezes
+the sum.
+
+\begin{lemma}\label{lem:subdivide}
+Let $(X,d)$ be a bounded-by-$1$ pseudometric space and let $x_0,y_0\in X$ with
+$t:=d(x_0,y_0)>0$. There exist a countable set $C=\{c_1,c_2,\ldots\}$ disjoint from $X$ and
+a metric $\omega\in\bM(X\cup C)$ with $\omega|_{X\times X}=d$ such that, writing $c_0:=x_0$:
+\begin{enumerate}
+\item $\omega(c_i,c_{i+1})=a_i$ for a sequence of positive rationals with
+      $\sum_{i\ge0}a_i=t$;
+\item $\omega(c_0,c_j)=\sum_{i<j}a_i$ and $\omega(c_j,y_0)=t-\sum_{i<j}a_i$ for all
+      $j\ge1$;
+\item every perturbation $\eps$ of $\omega$ satisfies
+      $\displaystyle\eps(x_0,y_0)=\sum_{i\ge0}\eps(c_i,c_{i+1})$, the series converging
+      absolutely.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Choose positive rationals $a_0,a_1,\ldots$ with $\sum_{i\ge0}a_i=t$, put $s_0=0$ and
+$s_j=\sum_{i<j}a_i$, so $s_j\uparrow t$ and $0<a_i<t\le1$. Let
+$S=\{s_0,s_1,\ldots\}\cup\{t\}\subseteq[0,1]$ carry the metric inherited from $\R$, and let
+$C^{+}$ be a copy of $S$ in which the points $s_0$ and $t$ are identified with $x_0$ and
+$y_0$ respectively and the points $s_j$ with $j\ge1$ are new; write $c_j$ for the point at
+$s_j$ and $C=\{c_1,c_2,\ldots\}$. The metric inherited from $\R$ agrees with $d$ on
+$C^{+}\cap X=\{x_0,y_0\}$, since $|t-0|=t=d(x_0,y_0)$, and that intersection is finite, so
+Lemma~\ref{lem:glue} supplies $\omega\in\bM(X\cup C)$ restricting to $d$ on $X$ and to the
+real-line metric on $C^{+}$. Items (1) and (2) are then immediate.
+
+For (3), let $\eps$ be a perturbation of $\omega$. By (2) the triples $[c_0,c_j,c_{j+1}]$
+and $[c_0,c_j,y_0]$ are degenerate for $\omega$, so Lemma~\ref{lem:tight} gives
+\[
+\eps(c_0,c_{j+1})=\eps(c_0,c_j)+\eps(c_j,c_{j+1}),
+\qquad
+\eps(c_0,c_j)+\eps(c_j,y_0)=\eps(x_0,y_0),
+\]
+whence $\eps(c_0,c_j)=\sum_{i<j}\eps(c_i,c_{i+1})$ for every $j$. By
+Lemma~\ref{lem:bound}, $|\eps(c_i,c_{i+1})|\le a_i$, so the series converges absolutely,
+and $|\eps(c_j,y_0)|\le\omega(c_j,y_0)=t-s_j\to0$. Letting $j\to\infty$ in the second
+display gives $\eps(x_0,y_0)=\sum_{i\ge0}\eps(c_i,c_{i+1})$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of the theorem}
+\label{sec:proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The finite theory enters exactly once.
+
+\begin{proposition}\label{prop:realize}
+For every rational $q\in(0,1]$ there are a finite set $F$, an extreme point
+$\rho\in\ex(\bM(F))$, and points $u,v\in F$ with $\rho(u,v)=q$.
+\end{proposition}
+
+\begin{proof}
+Write $q=a/b$ with $b\geq 2$ and $1\leq a\leq b$; this is possible for every rational in
+$(0,1]$, doubling numerator and denominator when the reduced denominator is $1$.
+
+Let $B_b$ denote the generalized bowtie metric of \cite{FK-cone} on the cells
+$P_1,\ldots,P_{b+1}$ of sizes $1,2,2,\ldots,2$, so that $F$ has $2b+1$ points. Its
+interior cells $P_2,\ldots,P_b$ all have size $2$, and there are $b+1\geq 3$ cells, so the
+side condition on two-cell bowties is vacuous; and $2b+1\geq 5$. The generalized bowtie
+theorem of \cite{FK-cone} therefore makes $B_b$ a generator of an extreme ray of the metric
+cone on $F$. Its values on distinct points are the level differences $1,\ldots,b$ together
+with the cell-mate value $2$, so $\tfrac{1}{b}B_b$ takes exactly the values
+$\tfrac1b,\tfrac2b,\ldots,\tfrac bb$ and has maximum $1$. A generator of an extreme ray with
+maximum value $1$ is an extreme point of the body \cite{FK-cone}, and $a/b$ occurs among its
+values.
+\end{proof}
+
+\begin{remark}\label{rem:bowtie-direct}
+The single family $B_b$ covers every rational in $(0,1]$, where the corresponding corollary
+of \cite{FK-cone} splits into the cases $q=2$ and $q\geq3$ with different cell patterns.
+
+The formalization of Proposition~\ref{prop:realize} does not pass through the metric cone at
+all, and the argument is worth recording, since the final step is shorter in the body than
+in the cone. The tight triples of $B_b$ are exactly the \emph{chains}, on points of three
+strictly increasing levels, and the \emph{vees}, on two cell-mates and a point of an
+adjacent level. Let $\eps$ be a perturbation of $\tfrac1bB_b$. For a four-cycle $x,u,y,v$
+whose four sides join consecutive cells and whose two diagonals are realized as vees through
+both of the remaining two points, Lemma~\ref{lem:tight} applied to the four vees gives
+\[
+\eps(x,u)+\eps(u,y)=\eps(x,v)+\eps(v,y),
+\qquad
+\eps(x,u)+\eps(x,v)=\eps(u,y)+\eps(v,y),
+\]
+whence $\eps(u,y)=\eps(x,v)$ and $\eps(x,u)=\eps(v,y)$. Propagating these equalities across
+and between blocks gives a common value $\lambda$ of $\eps$ on all pairs joining consecutive
+cells, and then Lemma~\ref{lem:tight} on vees and chains gives $\eps=\lambda B_b$
+throughout. The apex $P_1$ and any point of $P_{b+1}$ are at distance $1$, so
+Lemma~\ref{lem:bound} forces $\eps$ to vanish there, and that value is $\lambda b/b=\lambda$.
+Hence $\lambda=0$ and $\eps=0$.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix a countable dense $A\subseteq X$.
+
+\smallskip
+\noindent\emph{The construction.}
+We build an increasing chain $X=X_0\subseteq X_1\subseteq X_2\subseteq\cdots$ of sets and a
+compatible chain of metrics $d=\omega_0,\omega_1,\ldots$ with
+$\omega_{k+1}|_{X_k\times X_k}=\omega_k$, each step being one of:
+
+\begin{itemize}
+\item[(R)] \emph{Rigidify a rational pair.} Given $u,v\in X_k$ with
+$\omega_k(u,v)=q\in\Q\cap(0,1)$, take $F$ and $\rho\in\ex(\bM(F))$ from
+Proposition~\ref{prop:realize} realizing $q$ at a pair of points of $F$, identify those two
+points of $F$ with $u$ and $v$, and let $X_{k+1}=X_k\cup F$ with $\omega_{k+1}$ the metric
+of Lemma~\ref{lem:glue} for the intersection $\{u,v\}$.
+
+\item[(S)] \emph{Subdivide an irrational pair.} Given $u,v\in X_k$ with
+$\omega_k(u,v)\notin\Q$, let $X_{k+1}=X_k\cup C$ and $\omega_{k+1}=\omega$ as furnished by
+Lemma~\ref{lem:subdivide} applied to $(X_k,\omega_k)$ and the pair $u,v$.
+\end{itemize}
+
+Maintain a task list, initially the pairs $\{u,v\}\subseteq A$ with $0<d(u,v)<1$. A task
+with rational distance is discharged by a step of type (R); a task with irrational distance
+is discharged by a step of type (S), which appends to the list the countably many new pairs
+$\{c_i,c_{i+1}\}$, all of rational distance $a_i\in(0,1)$. Each step adds at most countably
+many points and at most countably many tasks, so dovetailing arranges that every task is
+discharged at some finite stage. Put $\tilde X=\bigcup_k X_k$ and let $\tilde d$ be the
+common extension of the $\omega_k$; this is well defined because any two points of
+$\tilde X$ lie in a common $X_k$ and the $\omega_k$ are compatible. Then
+$\tilde d\in\bM(\tilde X)$, $\tilde d|_{X\times X}=d$, and $\tilde X\setminus X$ is a
+countable union of countable sets, hence countable. Since $A\cup(\tilde X\setminus X)$ is
+countable and dense in $\tilde X$, the extension is separable.
+
+\smallskip
+\noindent\emph{Every perturbation vanishes on $A\times A$.}
+Let $\eps$ be a perturbation of $\tilde d$. Let $u,v\in A$ be distinct. If $d(u,v)\in\{0,1\}$
+then $\eps(u,v)=0$ by Lemma~\ref{lem:bound}. Otherwise $\{u,v\}$ was a task.
+
+If $d(u,v)$ is rational, the task was discharged by a step of type (R), which placed $u,v$
+inside a copy of a finite $F$ carrying an extreme $\rho$. By Corollary~\ref{cor:restrict},
+$\eps$ vanishes on $F\times F$, so $\eps(u,v)=0$.
+
+If $d(u,v)$ is irrational, the task was discharged by a step of type (S), and
+Lemma~\ref{lem:subdivide}(3) gives $\eps(u,v)=\sum_i\eps(c_i,c_{i+1})$. Each pair
+$\{c_i,c_{i+1}\}$ was itself appended to the task list with rational distance $a_i\in(0,1)$
+and so was later discharged by a step of type (R); by the previous paragraph
+$\eps(c_i,c_{i+1})=0$ for every $i$, and hence $\eps(u,v)=0$.
+
+\smallskip
+\noindent\emph{Every perturbation vanishes on $X_k\times X_k$, by induction on $k$.}
+For $k=0$: $\eps|_{X\times X}$ is a perturbation of $d$ by Corollary~\ref{cor:restrict}, it
+vanishes on $A\times A$ by the previous paragraph, and $A$ is dense in $X$, so
+Lemma~\ref{lem:dense} gives $\eps|_{X\times X}=0$.
+
+Assume $\eps$ vanishes on $X_k\times X_k$ and let $X_{k+1}=X_k\cup N$ be the next step,
+glued along the finite set $F_0=X_k\cap N$. A pair with both points in $X_k$ is covered by
+the inductive hypothesis. For a pair with both points in $N$: if the step was of type (R),
+$N$ carries a finite extreme metric and Corollary~\ref{cor:restrict} applies; if the step
+was of type (S), $N$ is the chain $\{c_j\}$ together with $F_0=\{u,v\}$, every distance
+$\omega_{k+1}(c_i,c_j)$ with $i<j$ is the sum $\sum_{i\le l<j}a_l$ of consecutive ones by
+Lemma~\ref{lem:subdivide}(2), so repeated use of Lemma~\ref{lem:tight} expresses
+$\eps(c_i,c_j)$ as $\sum_{i\le l<j}\eps(c_l,c_{l+1})$, which vanishes as above; the pairs
+$\{c_j,v\}$ are handled by the second display in the proof of
+Lemma~\ref{lem:subdivide}(3). Finally let $x\in X_k\setminus N$ and $y\in N\setminus X_k$.
+By Lemma~\ref{lem:glue} either $\omega_{k+1}(x,y)=1$, in which case $\eps(x,y)=0$ by
+Lemma~\ref{lem:bound}, or there is $z\in F_0$ with
+$\omega_{k+1}(x,y)=\omega_{k+1}(x,z)+\omega_{k+1}(z,y)$, in which case
+Lemma~\ref{lem:tight} gives $\eps(x,y)=\eps(x,z)+\eps(z,y)$; here $x,z\in X_k$ and
+$y,z\in N$, so both summands vanish by what precedes. This completes the induction.
+
+\smallskip
+Every pair of points of $\tilde X$ lies in some $X_k$, so $\eps=0$. By
+Proposition~\ref{prop:extreme-iff}, $\tilde d$ is extreme.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:irrational}]
+Let $V\subseteq[0,1]$ be countable. Realize $V$ as the set of distances of some countable
+bounded-by-$1$ pseudometric space---for instance, take a countable set $\{p_v\}_{v\in V}$
+together with a base point $p_*$, and define $d(p_*,p_v)=v$ and $d(p_v,p_w)=\max\{v,w\}$
+for $v\neq w$, an ultrametric. Apply Theorem~\ref{thm:main}; the extension restricts to
+this space, so its distances include $V$. The resulting space is countable, being countable
+plus countable.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The canonical extension}
+\label{sec:canonical}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The construction of Section~\ref{sec:proof} depends on an enumeration of tasks, on the
+rationals chosen to subdivide each irrational distance, and on the finite extreme metric
+chosen to freeze each rational one. All three choices can be made canonically, and the
+enumeration can be eliminated outright, by decorating \emph{ordered pairs} in two
+simultaneous stages.
+
+\begin{definition}[canonical selectors]\label{def:selectors}
+For irrational $t\in(0,1)$ let $t=\sum_{k\in K(t)}2^{-k}$ be the binary expansion, $K(t)$
+infinite, and let the \emph{canonical subdivision} of $t$ be the sequence of gaps
+$(2^{-k})_{k\in K(t)}$ in increasing order of $k$. For rational $q\in(0,1)$ let $b(q)$ be
+the denominator of $q$ in lowest terms, so $b(q)\geq2$, and let the \emph{canonical piece}
+for $q$ be the scaled bowtie $\tfrac{1}{b(q)}B_{b(q)}$ of Proposition~\ref{prop:realize},
+with its designated ordered pair (apex, point of level $a$), where $q=a/b(q)$.
+\end{definition}
+
+\begin{definition}[canonical extension]\label{def:canonical}
+Let $(A,d)$ be a countable metric space. \emph{Stage 1}: for every ordered pair
+$(u,v)\in A^2$ with $d(u,v)$ irrational, adjoin the subdivision chain from $u$ to $v$ with
+the canonical gaps, gluing the whole family at once. \emph{Stage 2}: for every ordered pair
+$(x,y)$ of points of the stage-1 space whose distance is a rational in $(0,1)$ and which
+is either a pair from $A$ or an adjacent gap pair of a stage-1 chain, adjoin the canonical
+piece for that distance with $x$ at the apex, again gluing the family at once. Write
+$\E(A)$ for the result.
+\end{definition}
+
+Since each ordered pair is decorated, and $(u,v)$ and $(v,u)$ receive mirror-image
+decorations, no orientation is chosen; since the decorations are indexed by the pairs
+themselves, no enumeration is chosen; and the selectors of Definition~\ref{def:selectors}
+are functions of the distance alone. The proof of Theorem~\ref{thm:main} applies
+verbatim---the task list there is exactly the index set here---so $\E(A)$ is an extreme
+metric space extending $A$ by countably many points.
+
+\begin{theorem}[functoriality]\label{thm:functor}
+$\E$ is a functor from countable bounded-by-$1$ pseudometric spaces with isometric
+embeddings to extreme ones: an isometric embedding $\psi\colon A\to B$ extends canonically
+to an isometric embedding $\E(\psi)\colon\E(A)\to\E(B)$ restricting to $\psi$, and
+$\E(\psi'\circ\psi)=\E(\psi')\circ\E(\psi)$. In particular isometric countable spaces have
+isometric canonical extensions.
+\end{theorem}
+
+\begin{proof}
+$\psi$ carries an ordered pair of $A$ to an ordered pair of $B$ at the same distance, hence
+with the same canonical subdivision or the same canonical piece; define $\E(\psi)$ as
+$\psi$ on $A$ and as the identity on decoration patterns over matched pairs. Distances
+inside $A$ are preserved by hypothesis; distances inside a decoration depend only on the
+distance of its pair; and a distance between two different decorations, or between a
+decoration and a base point, is by \eqref{eq:glue} a truncated minimum of sums of
+within-piece distances and base distances over the finitely many anchors of the pieces
+involved, every term of which is matched. The extra decorations present in $\E(B)$ over
+unmatched pairs do not enter these formulas. Composition holds because patterns map by the
+identity.
+\end{proof}
+
+\begin{remark}\label{rem:minimality}
+Functoriality and minimality pull apart: a functor must decorate every pair uniformly, so
+it cannot fix even the extreme inputs with a distance in $(0,1)$, while a minimal extension
+of an extreme space is the space itself. The canonical extension is visibly non-minimal.
+Whether minimal extreme extensions exist at all remains open;
+see Question~\ref{q:minimal}.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Recovery and nonclassification}
+\label{sec:nonclass}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Theorem~\ref{thm:main} says that extremality excludes no separable isometry type, and in
+this sense already reads as a nonclassification statement. This section makes the reading
+precise, in the framework of Borel reducibility \cite{GaoKechris03,Hjorth00}: writing
+$\leB$ for Borel reducibility, $\GI$ for graph isomorphism on countable graphs, and
+$\isoi$ for isometry of Polish metric spaces, we place isometry of \emph{extreme} Polish
+metric spaces above $\GI$.
+
+Extremality passes to completions, so the discussion may be conducted among Polish spaces.
+
+\begin{lemma}\label{lem:completion}
+Let $d\in\bM(X)$ be extreme and let $\bar X$ be the completion of $(X,d)$, with metric
+$\bar d$. Then $\bar d$ is an extreme point of $\bM(\bar X)$.
+\end{lemma}
+
+\begin{proof}
+A perturbation of $\bar d$ restricts to a perturbation of $d$ by
+Corollary~\ref{cor:restrict}, hence vanishes on $X\times X$; and $X$ is dense in $\bar X$,
+so the perturbation vanishes by Lemma~\ref{lem:dense}.
+\end{proof}
+
+Extremality is moreover a Borel condition in the standard presentation of Polish metric
+spaces as completions of metrics on $\N$: the set $\bM(\N)$ is a compact convex metrizable
+subset of $[0,1]^{\N\times\N}$, its extreme points form a $G_\delta$ subset, and by
+Lemma~\ref{lem:completion} together with Corollary~\ref{cor:restrict} a metric on $\N$ is
+extreme exactly when the metric of its completion is. Write $\isox$ for the restriction of
+$\isoi$ to this $G_\delta$ class.
+
+The decorations of the canonical extension are metrically inert, while its chains
+accumulate exactly at the core; this makes the core definable from the isometry type.
+
+\begin{lemma}[isolation]\label{lem:isolation}
+Every decoration point of $\E(A)$ is an isolated point of $\overline{\E(A)}$.
+\end{lemma}
+
+\begin{proof}
+Let $p$ be a decoration point, belonging to the piece $P$ glued along the finite anchor set
+$F_P$. By \eqref{eq:glue}, the distance from $p$ to any point outside $P$ is at least
+$\delta_1:=\min_{z\in F_P}d(p,z)$, a minimum over a finite set of positive numbers. Within
+$P$: if $P$ is a bowtie, $P$ is finite and $\delta_2:=$ its least positive distance to $p$
+is positive; if $P$ is a chain and $p=c_j$, the within-piece distances from $p$ are
+$|s-s_j|$ over the other partial sums $s$ and the two endpoint distances $s_j$ and
+$t-s_j$, all at least $\delta_2:=\min\{a_{j-1},a_j,s_j,t-s_j\}>0$. So no point of $\E(A)$
+other than $p$ lies within $\min\{\delta_1,\delta_2\}$ of $p$, and the same holds in the
+completion.
+\end{proof}
+
+\begin{lemma}\label{lem:limits}
+Every limit point of $\overline{\E(A)}$ lies in $\bar A$.
+\end{lemma}
+
+\begin{proof}
+Let $p_n\to z$ with the $p_n$ distinct. If infinitely many $p_n$ lie in $A$ then
+$z\in\bar A$ at once, so suppose all are decoration points. If some piece contains
+infinitely many $p_n$, then $z$ lies in the closure of that piece, which is the piece
+itself when a bowtie, and the piece together with its two endpoints when a chain; a chain
+has no limit points but its endpoints, so $z$ is an endpoint, hence a base point of its
+stage. If instead the pieces are eventually distinct, then since for $p,p'$ in distinct
+pieces \eqref{eq:glue} gives $d(p,p')\ge d(p,F_P)$, the Cauchy property forces
+$d(p_n,F_{P_n})\to0$ along a subsequence; choosing anchors $u_n\in F_{P_n}$ with
+$d(p_n,u_n)\to0$ gives $u_n\to z$ with the $u_n$ base points of the relevant stage. In
+either case $z$ is a limit of stage-2 base points, that is, of points of $A$ together with
+chain points; applying the same argument to a sequence of chain points, whose anchors lie
+in $A$, puts $z\in\bar A$, which is closed in $\overline{\E(A)}$.
+\end{proof}
+
+\begin{theorem}[recovery]\label{thm:recovery}
+Suppose every point of $A$ has some point of $A$ at irrational distance. Then the derived
+set of $\overline{\E(A)}$ is exactly $\bar A$. Consequently, for countable $A$ and $B$
+satisfying the hypothesis,
+\[
+\overline{\E(A)}\ \cong\ \overline{\E(B)}
+\quad\Longrightarrow\quad
+\bar A\ \cong\ \bar B .
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:limits} the derived set is contained in $\bar A$. Conversely let
+$a\in A$ and pick $a'\in A$ with $d(a,a')$ irrational; the canonical chain for the ordered
+pair $(a',a)$ has its partial sums converging to $d(a',a)$, so its points converge to $a$,
+and $a$ is a limit point; a general point of $\bar A$ is a limit of points of $A$, and the
+derived set is closed. The consequence holds because an isometry of completions carries
+derived sets to derived sets.
+\end{proof}
+
+The hypothesis is essential only for the containment $\bar A\subseteq{}$derived set;
+Lemmas~\ref{lem:isolation} and~\ref{lem:limits} are unconditional.
+
+\begin{theorem}\label{thm:gi}
+$\GI\ \leB\ \isox$.
+\end{theorem}
+
+\begin{proof}
+Fix irrationals $\alpha=1/\sqrt3$ and $\beta=1/\sqrt5$, both in $(\tfrac13,\tfrac23)$. For
+a graph $G$ on $\N$ let $X_G$ be $\N$ with $d(m,n)=\alpha$ for edges and $\beta$ for
+non-edges, $m\neq n$. Any two values in $(\tfrac13,\tfrac23)$ satisfy all triangle
+inequalities, so $X_G$ is a metric space; it is complete and uniformly discrete, so
+$\bar X_G=X_G$; every point has points at irrational distance; and since
+$\alpha\neq\beta$, a bijection $\N\to\N$ is an isometry $X_G\to X_H$ if and only if it is
+an isomorphism $G\to H$.
+
+The reduction is $G\mapsto$ a code of $\overline{\E(X_G)}$: the carrier of $\E(X_G)$ is
+$\N$ together with countably many canonically indexed decoration points, enumerated by a
+fixed bijection with $\N$, and each distance is given by an explicit formula---a
+within-piece value, or a truncated minimum over finitely many anchor routes---so the map is
+Borel. The output is extreme by Section~\ref{sec:canonical} and
+Lemma~\ref{lem:completion}.
+
+If $G\cong H$ then $X_G\cong X_H$, so $\overline{\E(X_G)}\cong\overline{\E(X_H)}$ by
+Theorem~\ref{thm:functor} and Lemma~\ref{lem:completion}. If conversely
+$\overline{\E(X_G)}\cong\overline{\E(X_H)}$, then $X_G\cong X_H$ by
+Theorem~\ref{thm:recovery}, hence $G\cong H$.
+\end{proof}
+
+\begin{corollary}\label{cor:nonclass}
+Isometry of extreme Polish metric spaces is not smooth, and is at least as complicated as
+the isomorphism relation of any class of countable structures. In particular extreme Polish
+metric spaces admit no Borel classification by real-number invariants, nor by countable
+structures.
+\end{corollary}
+
+\begin{proof}
+$\GI$ is universal among isomorphism relations of classes of countable structures and is
+not smooth \cite{Hjorth00}; Theorem~\ref{thm:gi} puts $\isox$ above it, and
+$\isox\leB\isoi$ by restriction.
+\end{proof}
+
+By the theorem of Gao and Kechris \cite{GaoKechris03}, $\isoi$ is Borel bireducible with
+the universal orbit equivalence relation induced by Borel actions of Polish groups, so
+$\isox$ now sits between $\GI$ and that maximum. It is tempting to close the gap by
+feeding $\E$ richer inputs. That route is closed, for a structural reason worth recording.
+Call a map $F$ from codes to metric spaces \emph{marked-canonical} if the isometry type of
+$F(A)$ depends only on the isometry type of $A$ as a countable metric space---as $\E$ does
+by Theorem~\ref{thm:functor}---rather than only on the completion $\bar A$.
+
+\begin{proposition}\label{prop:obstruction}
+No marked-canonical $F$ with a recovery property---isometry of outputs implies isometry of
+the countable inputs---can Borel-reduce a universal orbit equivalence relation to isometry
+of its outputs: any equivalence relation reducible through such a pair of implications
+Borel-reduces to $\GI$.
+\end{proposition}
+
+\begin{proof}
+The two implications together give $z\,\E\,z'\iff A_z\cong A_{z'}$, isometry of countable
+metric spaces. A countable metric space is a countable structure in the countable language
+$\{R_q:q\in\Q\}$, $R_q(x,y)\iff d(x,y)<q$, with isomorphism equal to isometry, so this
+relation Borel-reduces to $\GI$. A universal orbit equivalence relation does not: by the
+theory of turbulence \cite{Hjorth00} there are orbit equivalence relations not classifiable
+by countable structures, and these reduce to the universal one.
+\end{proof}
+
+So the dependence of the extension on its countable dense set is not bookkeeping to be
+routed around; it is the exact boundary of the method, and Theorem~\ref{thm:gi} is optimal
+for every construction of this shape.
+
+\begin{question}\label{q:universal}
+Is $\isox$ Borel bireducible with the universal orbit equivalence relation of Polish group
+actions---equivalently, is $\isoi\leB\isox$? By Proposition~\ref{prop:obstruction}, an
+affirmative proof must produce extreme extensions whose isometry type depends only on the
+completion of the input, or avoid extension constructions altogether. A negative answer
+would be equally striking: extremality would then be a genuine simplifying constraint,
+placing $\isox$ strictly between the countable-structure maximum and the universal one, a
+region where few natural equivalence relations are known to live.
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Remaining questions}
+\label{sec:questions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}\label{q:density}
+Theorem~\ref{thm:main} spends countability twice: once on the dense set $A$, and once on
+the subdivision of each irrational distance. For a bounded-by-$1$ pseudometric space of
+density character $\kappa$, does there exist an extreme extension $\tilde X$ with
+$|\tilde X\setminus X|\le\kappa$?
+\end{question}
+
+The first use of countability appears inessential---Lemma~\ref{lem:dense} holds for a dense
+set of any cardinality, and the task list may be indexed by any well-ordering---while the
+second is genuine: a single irrational distance requires countably many points to
+subdivide, so a space with $\kappa$ irrational distances calls for $\kappa\cdot\aleph_0$
+new points, which equals $\kappa$ for infinite $\kappa$. The obstruction to a transfinite
+recursion is bookkeeping rather than geometry, but the dovetailing argument above does not
+transcribe directly.
+
+\begin{question}\label{q:minimal}
+Does every separable bounded-by-$1$ pseudometric space admit a \emph{minimal} extreme
+extension, one no proper subspace of which containing $X$ carries an extreme metric
+restricting to $d$? Theorem~\ref{thm:functor} answers the functorial half of the canonicity
+question; by Remark~\ref{rem:minimality} no functorial extension is minimal, so the two
+notions of canonicity diverge and the minimal one remains open.
+\end{question}
+
+A related point deserves recording. For finite $X$ the extreme points of $\bM(X)$ are
+sparse and rigid, and the difficulty of the subject lies in identifying them. Theorem
+\ref{thm:main} shows that for countable $X$ they are instead dense in a strong sense: every
+separable bounded-by-$1$ pseudometric space sits inside one. The quantitative content has
+migrated entirely into the finite theory, through
+Proposition~\ref{prop:realize}---which distances a finite extreme metric can realize---and
+that question remains the interesting one.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formal verification}
+\label{sec:verify}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The results of Sections~\ref{sec:prelim}--\ref{sec:canonical}, and of
+Section~\ref{sec:nonclass} apart from the exceptions marked below, have been formalized in
+Lean~4 against Mathlib. The development is in \cite{Deposit}; it compiles free of
+\texttt{sorry}, and each theorem named below depends only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}. The formalization of
+Section~\ref{sec:nonclass} constructs no completions: isolation, limits and recovery are
+proved on the countable carriers, with isolation carrying an explicit radius, and
+Theorem~\ref{thm:gi}'s equivalence is proved there for simple graphs, which is the
+generality its statement intends. Two entries are marked accordingly:
+$^{\dagger}$Lemma~\ref{lem:completion} is the one numbered result left in prose---its
+two-line proof consumes only Corollary~\ref{cor:restrict} and Lemma~\ref{lem:dense}, both
+formalized---and $^{\ddagger}$the containment of limit points in $\bar A$ is formalized in
+the direction the reduction uses. The descriptive-set-theoretic inputs rest on cited
+literature outside the scope of formalization, as marked.
+
+Extremality is formalized twice: as the vanishing of every perturbation, and as membership
+in Mathlib's \texttt{Set.extremePoints} for the convex set of bounded-by-$1$ pseudometrics,
+the two being identified by Proposition~\ref{prop:extreme-iff}. Theorem~\ref{thm:main} and
+Corollary~\ref{cor:irrational} carry no hypotheses beyond those stated here.
+
+\begin{center}
+\begin{tabular}{lll}
+\textbf{Result} & \textbf{Status} & \textbf{Lean name}\\
+\hline
+Theorem~\ref{thm:main} & formalized & \texttt{separable\_extends\_to\_extreme'}\\
+ & & \texttt{separable\_extends\_to\_extremePoint'}\\
+Corollary~\ref{cor:irrational} & formalized & \texttt{exists\_countable\_extreme\_realizing'}\\
+Definition~\ref{def:perturbation} & formalized & \texttt{IsPerturbation}\\
+Proposition~\ref{prop:extreme-iff} & formalized & \texttt{rigid\_iff\_extremePoint}\\
+Lemma~\ref{lem:bound} & formalized & \texttt{abs\_pert\_le}\\
+Lemma~\ref{lem:tight} & formalized & \texttt{pert\_add\_of\_tight}\\
+Lemma~\ref{lem:dense} & formalized & \texttt{pert\_eq\_zero\_of\_dense}\\
+Corollary~\ref{cor:restrict} & formalized & \texttt{pert\_eq\_zero\_on\_of\_rigid\_restrict}\\
+Lemma~\ref{lem:glue} & formalized & \texttt{glue\_isBddPseudo}, \texttt{glue\_dichotomy}\\
+Remark~\ref{rem:pushout} & formalized & \texttt{glue\_no\_truncation\_not\_isBddPseudo}\\
+Lemma~\ref{lem:subdivide} & formalized & \texttt{pert\_eq\_tsum\_of\_geodesic}\\
+Proposition~\ref{prop:realize} & formalized & \texttt{exists\_finite\_rigid\_realizing}\\
+Remark~\ref{rem:bowtie-direct} & formalized & \texttt{Bowtie.bowtie\_rigid}\\
+\S\ref{sec:proof} induction & formalized & \texttt{rigid\_of\_chain}\\
+Theorem~\ref{thm:functor} & formalized & \texttt{E\_functor}, \texttt{E\_functor\_surj}\\
+Lemma~\ref{lem:completion} & prose only$^{\dagger}$ & ---\\
+Lemmas~\ref{lem:isolation}, \ref{lem:limits} & formalized$^{\ddagger}$ & \texttt{decor\_isolated}, \texttt{core\_is\_limit}\\
+Theorem~\ref{thm:recovery} & formalized, carrier form & \texttt{recovery}\\
+Theorem~\ref{thm:gi}, metric content & formalized & \texttt{main\_equivalence}\\
+Theorem~\ref{thm:gi}, Borel wrapper & cites \cite{GaoKechris03,Hjorth00} & ---\\
+Corollary~\ref{cor:nonclass}, Prop.~\ref{prop:obstruction} & cite \cite{GaoKechris03,Hjorth00} & ---\\
+Questions~\ref{q:density}, \ref{q:minimal}, \ref{q:universal} & open questions & ---\\
+\end{tabular}
+\end{center}
+
+Proposition~\ref{prop:realize} is formalized by the direct argument of
+Remark~\ref{rem:bowtie-direct} rather than by the route through the metric cone given in its
+proof above, so the machine-checked development depends on no result outside this paper.
+
+Four statements were recorded in the development as deliberately false, to guard hypotheses
+that the proofs consume: the amalgam of Lemma~\ref{lem:glue} without its truncation at $1$;
+the dichotomy of Lemma~\ref{lem:glue} with an infinite gluing locus; the sufficiency of a
+single round of gluing, without the subdivision of Lemma~\ref{lem:subdivide}; and the
+conclusion of Lemma~\ref{lem:dense} without the hypothesis that $\eps$ is a perturbation.
+Each is refuted in the development by an explicit counterexample.
+
+\subsection*{Acknowledgment}
+We thank Dmitri Nikshych for the observation that Theorem~\ref{thm:main} should be read as
+a nonclassification result; Sections~\ref{sec:canonical} and~\ref{sec:nonclass} grew from
+pursuing it.
+
+\begin{thebibliography}{9}
+
+\bibitem{Avis80}
+D.~Avis, On the extreme rays of the metric cone,
+\textit{Canad.\ J.\ Math.}~\textbf{32} (1980), no.~1, 126--144.
+
+\bibitem{Bandelt92}
+H.-J.~Bandelt and A.W.M.~Dress, A canonical decomposition theory for metrics on a finite
+set, \textit{Adv.\ Math.}~\textbf{92} (1992), no.~1, 47--105.
+
+\bibitem{Deposit}
+D.V.~Feldman and E.R.~Kehoe, \textit{Lean~4 formalization of ``Every separable metric space
+extends to an extreme one''}, Zenodo, DOI to appear.
+
+\bibitem{Deza97}
+M.M.~Deza and M.~Laurent, \textit{Geometry of Cuts and Metrics}, Springer-Verlag,
+Berlin--Heidelberg, 1997.
+
+\bibitem{GaoKechris03}
+S.~Gao and A.S.~Kechris, \textit{On the classification of Polish metric spaces up to
+isometry}, Mem.\ Amer.\ Math.\ Soc.\ \textbf{161} (2003), no.~766.
+
+\bibitem{Hjorth00}
+G.~Hjorth, \textit{Classification and Orbit Equivalence Relations}, Math.\ Surveys
+Monogr.~75, Amer.\ Math.\ Soc., 2000.
+
+\bibitem{FK-cone}
+D.V.~Feldman and E.R.~Kehoe, Extreme rays of the metric cone and the metric body: bowtie
+metrics and half-one extremality, companion paper, arXiv:XXXX.XXXXX.
+
+\bibitem{Kehoe19}
+E.R.~Kehoe, \textit{Pseudometrics, the Complex of Ultrametrics, and Iterated Cycle
+Structures}, Ph.D.\ dissertation, University of New Hampshire, 2019.
+\url{https://scholars.unh.edu/dissertation/2451}
+
+\bibitem{Koolen00}
+J.~Koolen, V.~Moulton, and U.~T\"{o}nges, A classification of the six-point prime metrics,
+\textit{European J.\ Combin.}~\textbf{21} (2000), no.~6, 815--829.
+
+\end{thebibliography}
+
+\end{document}

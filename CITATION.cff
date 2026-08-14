@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Every Separable Metric Space Extends to an Extreme One"
+abstract: >-
+  The bounded-by-one pseudometrics on a set form a compact convex set. For a finite set this
+  is a rational polytope, so its extreme points have rational distances and satisfy strong
+  rigidity constraints. This paper shows that no such restriction survives passage to an
+  infinite set: every separable bounded-by-one pseudometric space is the restriction of an
+  extreme point of the metric body of a larger space obtained by adding only countably many
+  points. Accompanied by a complete Lean 4 formalization.
+type: software
+authors:
+  - family-names: Feldman
+    given-names: David Victor
+    affiliation: "University of New Hampshire, Department of Mathematics and Statistics"
+    orcid: "https://orcid.org/0000-0001-6943-4833"
+  - family-names: Kehoe
+    given-names: Eric R.
+    affiliation: "Zoetis, Inc."
+keywords:
+  - metric geometry
+  - extreme points
+  - metric body
+  - separable metric spaces
+  - Lean 4
+  - formal verification
+version: "1.0.0"
+date-released: "2026-08-13"
