@@ -68,5 +68,8 @@ here does not depend on it, proving Proposition 5.1 directly.
 
 ## License
 
-To be chosen before the first release. Add a `LICENSE` file and record it in
-`CITATION.cff`.
+The Lean 4 development and everything else in this repository: Apache License 2.0
+(`LICENSE`), matching Mathlib, on which the development depends.
+
+The paper (`paper/`): Creative Commons Attribution 4.0 International, CC BY 4.0
+(`LICENSE-PAPER`).

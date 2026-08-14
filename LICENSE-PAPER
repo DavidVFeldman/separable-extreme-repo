@@ -1,0 +1,15 @@
+The contents of paper/ — separable-extreme.tex and separable-extreme.pdf, being the
+article "Every Separable Metric Space Extends to an Extreme One" — are licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+    Copyright 2026 David Victor Feldman and Eric R. Kehoe
+
+    https://creativecommons.org/licenses/by/4.0/
+    Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to share and adapt this material for any purpose, including commercially,
+provided you give appropriate credit, link to the license, and indicate if changes were
+made.
+
+Everything else in this repository — in particular the Lean 4 development in lean/ — is
+licensed under the Apache License 2.0; see LICENSE.
