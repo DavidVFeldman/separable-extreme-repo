@@ -1,6 +1,10 @@
 # Every Separable Metric Space Extends to an Extreme One
 
-Paper and Lean 4 formalization.
+[![DOI](https://zenodo.org/badge/1333820931.svg)](https://doi.org/10.5281/zenodo.21929312)
+
+Paper and Lean 4 formalization. Archived at Zenodo: concept DOI
+[10.5281/zenodo.21929312](https://doi.org/10.5281/zenodo.21929312) (cite this; it resolves
+to the latest version).
 
 **Theorem.** Every separable bounded-by-one pseudometric space `(X, d)` is the restriction
 of an extreme point of the metric body of some `X̃ ⊇ X` with `X̃ \ X` countable.

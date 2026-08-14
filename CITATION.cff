@@ -17,6 +17,7 @@ authors:
   - family-names: Kehoe
     given-names: Eric R.
     affiliation: "Zoetis, Inc."
+doi: 10.5281/zenodo.21929312
 keywords:
   - metric geometry
   - extreme points
@@ -24,5 +25,5 @@ keywords:
   - separable metric spaces
   - Lean 4
   - formal verification
-version: "1.0.0"
-date-released: "2026-08-13"
+version: "1.0.1"
+date-released: "2026-08-14"
