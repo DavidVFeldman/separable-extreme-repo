@@ -1,0 +1,19 @@
+{
+  "title": "Every Separable Metric Space Extends to an Extreme One: paper and Lean 4 formalization",
+  "creators": [
+    {
+      "name": "Feldman, David Victor",
+      "affiliation": "University of New Hampshire, Department of Mathematics and Statistics",
+      "orcid": "0000-0001-6943-4833"
+    },
+    {
+      "name": "Kehoe, Eric R.",
+      "affiliation": "Zoetis, Inc."
+    }
+  ],
+  "description": "Every separable bounded-by-one pseudometric space embeds isometrically, with countable complement, into one whose metric is an extreme point of the metric body. The extension admits a canonical functorial form and is reversible, whence graph isomorphism Borel-reduces to isometry of extreme Polish metric spaces. Accompanied by a complete Lean 4 formalization: the development builds free of sorry, and every audited declaration depends only on propext, Classical.choice, Quot.sound.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "keywords": ["metric geometry", "extreme points", "metric body", "separable metric spaces", "Borel reducibility", "Lean 4", "formal verification"]
+}

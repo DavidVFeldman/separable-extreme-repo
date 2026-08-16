@@ -31,13 +31,15 @@
 
 \author{David Victor Feldman\\
 \small Department of Mathematics and Statistics\\
-\small University of New Hampshire
+\small University of New Hampshire\\
+\small \texttt{dvfinnh@gmail.com}
 \and
 Eric R.\ Kehoe\\
 \small Zoetis, Inc.\\
-\small Fort Collins, Colorado}
+\small Fort Collins, Colorado\\
+\small \texttt{eric.kehoe@proton.me}}
 
-\date{}
+\date{August 2026}
 
 \begin{document}
 \maketitle
@@ -61,6 +63,11 @@ spaces: extreme spaces admit no classification by real-number invariants, nor by
 structures. A structural obstruction confines this method below the universal orbit
 equivalence relation, and the resulting gap is posed as a question.
 \end{abstract}
+
+\medskip
+\noindent\textbf{MSC 2020:} 54E35 (primary); 52A07, 03E15, 54H05, 05C60, 68V20.\\
+\textbf{Keywords:} extreme points, metric body, separable metric spaces, Borel
+reducibility, graph isomorphism, Lean, formal verification.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -795,6 +802,7 @@ the two being identified by Proposition~\ref{prop:extreme-iff}. Theorem~\ref{thm
 Corollary~\ref{cor:irrational} carry no hypotheses beyond those stated here.
 
 \begin{center}
+\small
 \begin{tabular}{lll}
 \textbf{Result} & \textbf{Status} & \textbf{Lean name}\\
 \hline
@@ -807,7 +815,8 @@ Lemma~\ref{lem:bound} & formalized & \texttt{abs\_pert\_le}\\
 Lemma~\ref{lem:tight} & formalized & \texttt{pert\_add\_of\_tight}\\
 Lemma~\ref{lem:dense} & formalized & \texttt{pert\_eq\_zero\_of\_dense}\\
 Corollary~\ref{cor:restrict} & formalized & \texttt{pert\_eq\_zero\_on\_of\_rigid\_restrict}\\
-Lemma~\ref{lem:glue} & formalized & \texttt{glue\_isBddPseudo}, \texttt{glue\_dichotomy}\\
+Lemma~\ref{lem:glue} & formalized & \texttt{glue\_isBddPseudo},\\
+ & & \texttt{glue\_dichotomy}\\
 Remark~\ref{rem:pushout} & formalized & \texttt{glue\_no\_truncation\_not\_isBddPseudo}\\
 Lemma~\ref{lem:subdivide} & formalized & \texttt{pert\_eq\_tsum\_of\_geodesic}\\
 Proposition~\ref{prop:realize} & formalized & \texttt{exists\_finite\_rigid\_realizing}\\
@@ -815,7 +824,8 @@ Remark~\ref{rem:bowtie-direct} & formalized & \texttt{Bowtie.bowtie\_rigid}\\
 \S\ref{sec:proof} induction & formalized & \texttt{rigid\_of\_chain}\\
 Theorem~\ref{thm:functor} & formalized & \texttt{E\_functor}, \texttt{E\_functor\_surj}\\
 Lemma~\ref{lem:completion} & prose only$^{\dagger}$ & ---\\
-Lemmas~\ref{lem:isolation}, \ref{lem:limits} & formalized$^{\ddagger}$ & \texttt{decor\_isolated}, \texttt{core\_is\_limit}\\
+Lemmas~\ref{lem:isolation}, \ref{lem:limits} & formalized$^{\ddagger}$ & \texttt{decor\_isolated},\\
+ & & \texttt{core\_is\_limit}\\
 Theorem~\ref{thm:recovery} & formalized, carrier form & \texttt{recovery}\\
 Theorem~\ref{thm:gi}, metric content & formalized & \texttt{main\_equivalence}\\
 Theorem~\ref{thm:gi}, Borel wrapper & cites \cite{GaoKechris03,Hjorth00} & ---\\

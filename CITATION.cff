@@ -16,6 +16,7 @@ authors:
     orcid: "https://orcid.org/0000-0001-6943-4833"
   - family-names: Kehoe
     given-names: Eric R.
+    email: eric.kehoe@proton.me
     affiliation: "Zoetis, Inc."
 doi: 10.5281/zenodo.21929312
 license: Apache-2.0
@@ -26,5 +27,5 @@ keywords:
   - separable metric spaces
   - Lean 4
   - formal verification
-version: "1.2"
+version: "1.3"
 date-released: "2026-08-14"
